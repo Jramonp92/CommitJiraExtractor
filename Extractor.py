@@ -39,7 +39,7 @@ def jira_status(tickets):
     'verify': False
     }
 
-    jira = JIRA(options, basic_auth=(JIRA_USERNAME, JIRA_TOKEN))
+    jira = JIRA(options, basic_auth=(JIRA_USERNAME, sJIRA_TOKEN))
 
     for ticket in tickets:
         try:
@@ -52,7 +52,8 @@ def jira_status(tickets):
 
 def main():
     tickets = ticket_number_extractor(OWNER, REPO, YOUR_ACCESS_TOKEN, BRANCH_NAME, DATE_INIT, DATE_FINISH)
-    if(tickets):
+    print(tickets)
+    if(not tickets):
         jira_status(tickets)
 
 if __name__== "__main__":
