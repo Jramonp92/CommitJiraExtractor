@@ -52,7 +52,7 @@ def jira_status(tickets):
 
 def main():
     tickets = ticket_number_extractor(OWNER, REPO, YOUR_ACCESS_TOKEN, BRANCH_NAME, DATE_INIT, DATE_FINISH)
-    print(tickets) 
+    print(tickets)
     if(not tickets):
         jira_status(tickets)
 
