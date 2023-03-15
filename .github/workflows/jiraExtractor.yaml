@@ -1,0 +1,35 @@
+name: Extract Jira tickets
+on:
+  workflow_dispatch:
+    inputs:
+      initial_date:
+        description: The initial date to check for the commits
+        required: true
+      final_date:
+        description: The final date to check for commits
+        required: true
+
+env:
+  OWNER: ${{github.repository_owner}}
+  REPO: ${{github.repository}}
+  BRANCH_NAME: main
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  START_DATE: ${{github.event.unputs.initial_date}}
+  END_DATE: ${{github.event.unputs.final_date}}
+  JIRA_URL: "wwww"
+  JIRA_USERNAME: "www"
+  JIRA_TOKEN: "www"
+
+
+jobs:
+  jira_tickets:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install jira requests
+    - name: Extract tickets and check status on Jira
+      run: |
+        python script.py --Owner $OWNER --Repo $REPO --Branch_name $BRANCH_NAME --Github_token $GITHUB_TOKEN --Start_date $START_DATE --End_date $END_DATE --Jira_url $JIRA_URL --Jira_username $JIRA_USERNAME --Jira_token $JIRA_TOKEN
