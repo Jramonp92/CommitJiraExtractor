@@ -1,30 +1,35 @@
 import requests
 import re
+import argparse
 from jira import JIRA
+#TODO Add a logger
 
-
-##Add args parser#
-OWNER = "Jramonp92"
-REPO = "CommitJiraExtractor"
-YOUR_ACCESS_TOKEN = "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"
-BRANCH_NAME = "main"
-DATE_INIT = "2022-03-01"
-DATE_FINISH = "2023-05-05"
-JIRA_BASE_URL = ""
-JIRA_USERNAME = ""
-JIRA_TOKEN = ""
-
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--Owner", help="Owner of the repository")
+    parser.add_argument("--Repo", help="Repository name")
+    parser.add_argument("--branch_name", help="Name of the branch to check")
+    parser.add_argument("--Github_token", help="Github token")
+    parser.add_argument("--Start_date", help="Start Date")
+    parser.add_argument("--End_date", help="End Date")
+    parser.add_argument("--Jira_url", help="URL Jira")
+    parser.add_argument("--Jira_username", help="Jira Username")
+    parser.add_argument("--Jira_token", help="Jira token")
+    args = parser.parse_args()
+    return args
 
 def ticket_number_extractor(Owner, Repo, Token, branch, init, finish):
     ticket_numbers = []
     headers = {"Authorization": f"Token{Token}"}
     url = f"https://api.github.com/repos/{Owner}/{Repo}/commits?sha={branch}&since={init}T00:00:00Z&until={finish}T23:59:59Z"
 
+
     response = requests.get(url, headers=headers)
     commits = response.json()
 
     if(commits):
         for commit in commits:
+
             match = re.search(r"(?i)^[A-Z]+-\d+", commit["commit"]["message"])
             if match:
                 ticket_numbers.append(match.group())
@@ -35,11 +40,11 @@ def ticket_number_extractor(Owner, Repo, Token, branch, init, finish):
 
 def jira_status(tickets):
     options = {
-    'server': JIRA_BASE_URL,
+    'server': Jira_url,
     'verify': False
     }
 
-    jira = JIRA(options, basic_auth=(JIRA_USERNAME, sJIRA_TOKEN))
+    jira = JIRA(options, basic_auth=(Jira_username, Jira_token))
 
     for ticket in tickets:
         try:
@@ -51,7 +56,9 @@ def jira_status(tickets):
             print(f"I can't find the status of the ticket {ticket}: due to {e}")
 
 def main():
-    tickets = ticket_number_extractor(OWNER, REPO, YOUR_ACCESS_TOKEN, BRANCH_NAME, DATE_INIT, DATE_FINISH)
+    args = parse_arguments()
+
+    tickets = ticket_number_extractor(args.Owner, args.Repo, args.Github_token, args.branch_name, args.Start_date, args.End_date)
     print(tickets)
     if(not tickets):
         jira_status(tickets)
