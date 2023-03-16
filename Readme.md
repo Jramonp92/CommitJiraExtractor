@@ -28,5 +28,5 @@ requests, re, argparse, logging, jira modules. You can install them by running:
 
 `python github_jira_integration.py --Repo=my-repo --Branch_name=develop --Github_token=abc123 --Start_date=2022-01-01 --End_date=2022-01-31 --Jira_url=https://my-jira-instance.com --Jira_username=jdoe --Jira_token=xyz789`
 
-## License 	:scroll:
+## License 	 :scroll:
 This project is licensed under the MIT License - see the LICENSE file for details.
