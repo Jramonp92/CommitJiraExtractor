@@ -2,7 +2,7 @@
 
 This script is a simple integration between GitHub and Jira. The script extracts the ticket number from commit messages for a specific repository and branch within a specified date range. Then it searches the Jira issues for the extracted ticket numbers and returns their summary and status.
 
-## Github Action :octocat:
+## Github Action  :octocat:
 
 This repository also contains a workflow to run the script in a github action via dispatcher, just adding the date range.
 
