@@ -1,4 +1,4 @@
-name: Extract Jira tickets
+name: Check Jira tickets in Github
 on:
   workflow_dispatch:
     inputs:
