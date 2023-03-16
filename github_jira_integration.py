@@ -35,7 +35,7 @@ def ticket_number_extractor(Repo, Token, branch, init, finish):
                 if match:
                     ticket_numbers.append(match.group())
                 else:
-                    url = commit['url'].replace('api.','').replace('repos/','')
+                    url = commit['url'].replace('api.','').replace('commits','commit').replace('repos/','')
                     logger.info(f"No Jira ticket found in commit message for {url}")
         else:
             logger.info("No commits for these dates.")
