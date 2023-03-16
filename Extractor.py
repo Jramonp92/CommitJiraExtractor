@@ -62,7 +62,7 @@ def jira_status(tickets, Jira_url, Jira_username, Jira_token):
 def main():
     args = parse_arguments()
     tickets = ticket_number_extractor(args.Repo, args.Github_token, args.Branch_name, args.Start_date, args.End_date)
-    logger.s(tickets)
+    logger.info(tickets)
     
     if(tickets):
         jira_status(tickets, args.Jira_url, args.Jira_username, args.Jira_token)
