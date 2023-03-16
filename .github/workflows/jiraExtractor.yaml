@@ -10,7 +10,6 @@ on:
         required: true
 
 env:
-  OWNER: ${{github.repository_owner}}
   REPO: ${{github.repository}}
   BRANCH_NAME: main
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
