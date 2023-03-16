@@ -2,7 +2,7 @@
 
 This script is a simple integration between GitHub and Jira. The script extracts the ticket number from commit messages for a specific repository and branch within a specified date range. Then it searches the Jira issues for the extracted ticket numbers and returns their summary and status.
 
-## Github Action :octocat:
+## Github Action  :octocat:
 
 This repository also contains a workflow to run the script in a github action via dispatcher, just adding the date range.
 
@@ -28,5 +28,5 @@ requests, re, argparse, logging, jira modules. You can install them by running:
 
 `python github_jira_integration.py --Repo=my-repo --Branch_name=develop --Github_token=abc123 --Start_date=2022-01-01 --End_date=2022-01-31 --Jira_url=https://my-jira-instance.com --Jira_username=jdoe --Jira_token=xyz789`
 
-## License 	:scroll:
+## License 	 :scroll:
 This project is licensed under the MIT License - see the LICENSE file for details.
