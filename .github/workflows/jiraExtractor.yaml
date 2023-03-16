@@ -32,4 +32,4 @@ jobs:
         pip install jira requests
     - name: Extract tickets and check status on Jira
       run: |
-        python Extractor.py --Owner=$OWNER --Repo=$REPO --Branch_name=$BRANCH_NAME --Github_token=$GITHUB_TOKEN --Start_date=$START_DATE --End_date=$END_DATE --Jira_url=$JIRA_URL --Jira_username=$JIRA_USERNAME --Jira_token=$JIRA_TOKEN
+        python Extractor.py --Owner=${{env.OWNER}} --Repo=${{env.REPO}} --Branch_name=${{env.BRANCH_NAME}} --Github_token=${{env.GITHUB_TOKEN}} --Start_date=${{env.START_DATE}} --End_date=${{env.END_DATE}} --Jira_url=${{env.JIRA_URL}} --Jira_username=${{env.JIRA_USERNAME}} --Jira_token=${{env.JIRA_TOKEN}}
