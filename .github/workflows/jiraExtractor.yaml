@@ -14,8 +14,8 @@ env:
   REPO: ${{github.repository}}
   BRANCH_NAME: main
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-  START_DATE: ${{github.event.unputs.initial_date}}
-  END_DATE: ${{github.event.unputs.final_date}}
+  START_DATE: ${{github.event.inputs.initial_date}}
+  END_DATE: ${{github.event.inputs.final_date}}
   JIRA_URL: "wwww"
   JIRA_USERNAME: "www"
   JIRA_TOKEN: "www"

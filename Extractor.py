@@ -9,7 +9,6 @@ logger = logging.getLogger(__name__)
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--Owner", help="Owner of the repository")
     parser.add_argument("--Repo", help="Repository name")
     parser.add_argument("--Branch_name", help="Name of the branch to check")
     parser.add_argument("--Github_token", help="Github token")
@@ -21,10 +20,10 @@ def parse_arguments():
     args = parser.parse_args()
     return args
 
-def ticket_number_extractor(Owner, Repo, Token, branch, init, finish):
+def ticket_number_extractor(Repo, Token, branch, init, finish):
     ticket_numbers = []
     headers = {"Authorization": f"Token{Token}"}
-    url = f"https://api.github.com/repos/{Owner}/{Repo}/commits?sha={branch}&since={init}T00:00:00Z&until={finish}T23:59:59Z"
+    url = f"https://api.github.com/repos/{Repo}/commits?sha={branch}&since={init}T00:00:00Z&until={finish}T23:59:59Z"
 
     try:
         response = requests.get(url, headers=headers)
@@ -62,7 +61,7 @@ def jira_status(tickets, Jira_url, Jira_username, Jira_token):
 
 def main():
     args = parse_arguments()
-    tickets = ticket_number_extractor(args.Owner, args.Repo, args.Github_token, args.Branch_name, args.Start_date, args.End_date)
+    tickets = ticket_number_extractor(args.Repo, args.Github_token, args.Branch_name, args.Start_date, args.End_date)
     logger.s(tickets)
     
     if(tickets):
